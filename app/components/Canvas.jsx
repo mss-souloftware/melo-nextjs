@@ -55,17 +55,35 @@ export default function Canvas() {
 
         loadImages();
 
-        gsap.to(frameIndex.current, {
-            value: images.current.length - 1,
-            ease: 'none',
+        // Create a GSAP timeline
+        const timeline = gsap.timeline({
             scrollTrigger: {
                 trigger: canvasRef.current,
-                start: 'top top',
-                end: 'bottom bottom',
-                scrub: true,
-                onUpdate: handleScroll
+                start: "top top",
+                end: "bottom bottom",
+                scrub: true
             }
         });
+
+        // Animate canvas position from right to center
+        timeline.fromTo(canvasRef.current,
+            { right: "-170px", x: 0 }, // Initial position off-screen to the right
+            {
+                right: "calc(50% - 310px)", // Adjust this based on canvas width for accurate centering
+                x: 0,
+                ease: "power1.out"
+            }
+        );
+
+        // Animate frame index to change images
+        timeline.to(frameIndex.current, {
+            value: images.current.length - 1,
+            ease: 'none',
+            onUpdate: handleScroll
+        });
+
+        // Initial draw
+        drawImage(0);
 
         window.addEventListener('scroll', handleScroll);
 
@@ -83,8 +101,9 @@ export default function Canvas() {
             style={{
                 position: 'fixed',
                 top: "50px",
-                right: "-170px",
+                right: "-170px", // Initial position off-screen to the right
                 zIndex: 1000, // Adjust z-index if necessary
+                transform: 'translateX(0)' // Ensure centering is accurate
             }}
         />
     );
