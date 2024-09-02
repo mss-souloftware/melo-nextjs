@@ -1,0 +1,51 @@
+.navlinks ul {
+    max-width: 200px;
+    width: 100%;
+    border: 2px solid #fff;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-height: 45px;
+    margin: auto;
+    padding: .694vw 2.222vw;
+    overflow: hidden;
+}
+
+.navlinks ul li a {
+    position: relative;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 400;
+    font-size: 1.389vw;
+}
+
+.navlinks ul li a::after {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 5px;
+    bottom: -15px;
+    left: 0;
+    background: #fff;
+    transition: all .2s linear;
+}
+
+.navlinks ul li a:hover::after {
+    bottom: -10px;
+}
+
+.cartBtn a{
+    /* max-width: 100px; */
+    display: inline-block;
+    max-height: 45px;
+    /* width: 100%; */
+    height: 100%;
+    border-radius: 10px;
+    align-items: center;
+    border: 2px solid #fff;
+    padding: 10px 20px;
+    text-transform: uppercase;
+    font-weight: 400;
+    color: #fff;
+}

@@ -4,6 +4,6 @@
 
 
 body {
-  background: rgb(255, 255, 0);
-  background: linear-gradient(135deg, rgba(255, 255, 0, 1) 39%, rgba(255, 55, 111, 1) 100%);
+  background: rgb(102, 45, 144);
+  background: linear-gradient(135deg, rgba(102, 45, 144, 1) 16%, rgba(255, 1, 255, 1) 74%);
 }
