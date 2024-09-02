@@ -15,6 +15,7 @@
 
 # production
 /build
+/public/images/canvas
 
 # misc
 .DS_Store
