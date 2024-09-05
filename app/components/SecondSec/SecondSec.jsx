@@ -22,13 +22,13 @@ export default function SecondSec() {
           </h2>
           <p className="text-white">
             Transforming the Alternative Alcohol Space. Welcome to Melo, where
-            we're not just crafting THC seltzers; we're revolutionizing the way
+            we&apos;re not just crafting THC seltzers; we&apos;re revolutionizing the way
             you unwind. Born from the desire to offer a groundbreaking
             alternative to traditional alcoholic beverages, Melo is here to
             redefine your chill moments, one sip at a time. Catering
-            specifically to the vibrant 20-30 year old crowd, we're on a mission
+            specifically to the vibrant 20-30 year old crowd, we&apos;re on a mission
             to turn every gathering, solo chill, or casual hangout into an
-            experience that's both memorable and mindful.
+            experience that&apos;s both memorable and mindful.
           </p>
         </div>
       </div>
