@@ -1,15 +1,22 @@
 import React from "react";
+import styles from "./SecondSec.module.css";
 
 export default function SecondSec() {
   return (
     <section className="mt-40 mb-96">
       <div className="flex justify-between">
-        <div className="leftData w-1/2"></div>
-        <div className="rightData w-1/2 pl-40 pr-5">
+        <div className="leftData w-1/2">
+          <div className={styles.leftSideData}>
+            <div>
+              <span>Stay sick 🤙 🤧 not sick</span>
+            </div>
+          </div>
+        </div>
+        <div className={`${styles.rightData} w-1/2 pl-40 pr-5`}>
           <span className="text-white uppercase">
             TRY something totally new
           </span>
-          <h2 className="text-white uppercase text-3xl font-bold my-5">
+          <h2 className="text-white uppercase font-bold my-5">
             we mix madness, genius, and a pinch of chaos to bring you the best
             sips in the universe.
           </h2>

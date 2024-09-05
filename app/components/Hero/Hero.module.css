@@ -25,3 +25,8 @@
     font-size: 1.528vw;
     font-size: max(15px, 1.528vw);
 }
+
+.svgArrow{
+    margin: 7.431vw auto 0;
+    max-width: 50px;
+}
