@@ -7,7 +7,7 @@ html {
   overflow-x: hidden;
 }
 
-body {
+.mainGradient {
   background: rgb(0, 35, 109);
   background: linear-gradient(
     135deg,

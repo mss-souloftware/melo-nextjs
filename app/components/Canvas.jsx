@@ -98,7 +98,7 @@ export default function Canvas() {
         position: "fixed",
         top: "50px",
         right: "-170px",
-        zIndex: 1000,
+        zIndex: 1,
         transform: "translateX(0)",
       }}
     />

@@ -5,7 +5,7 @@ import styles from './Header.module.css'
 
 export default function Header() {
   return (
-    <header className='my-3'>
+    <header className='py-3'>
       <div className="px-4 mx-auto">
         <div className="flex w-full">
           <div className='w-1/3'>
