@@ -4,6 +4,7 @@ import Header from "./components/Header/Header";
 import Canvas from "./components/Canvas";
 import SecondSec from "./components/SecondSec/SecondSec";
 import Accordion from "./components/Accordion/Accordion";
+import Heading from "./components/Heading/Heading";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
         <Hero />
         <SecondSec />
       </div>
+      <Heading />
       <Accordion />
     </>
   );

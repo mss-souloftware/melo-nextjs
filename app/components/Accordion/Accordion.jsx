@@ -1,6 +1,7 @@
-"use client"
+"use client";
 import React, { useState } from "react";
 import styles from "./Accordion.module.css";
+import Image from "next/image";
 
 const accordionItems = [
   {
@@ -28,14 +29,40 @@ export default function Accordion() {
   };
 
   return (
-    <section className={`${styles.accordionMain} py-10`}>
+    <section className={`${styles.accordionMain} py-40`}>
       <div className="flex justify-between">
-        <div className="socialProof w-1/2"></div>
-        <div className="accordionData w-1/2 space-y-4 pl-40 pr-5 relative z-30">
-          {accordionItems.map((item, index) => (
-            <div key={item.id} className="border-b border-gray-300">
+        <div className={`${styles.accordionSocials} w-1/2`}>
+          <h2 className="uppercase font-bold text-white">Wild Berries</h2>
+          <p className="text-white">
+            Get ready to take your taste buds on a rollercoaster of flavor with
+            MELO Wild Berries Seltzer! This ain’t your grandma’s seltzer – it’s
+            a wild party in a can! Each sip packs a punch of juicy black cherry,
+            bold pomegranate, and a medley of wild berries to make your mouth
+            dance with joy. But that’s not all, folks! We’re bringing the good
+            times with a chill twist – 5mg of THC per can elevate your vibes to
+            the next level.
+          </p>
+        </div>
+        <div className={`${styles.accordionData} w-1/2 space-y-4 pl-40 pr-5 relative z-30`}>
+          <span className="text-white uppercase">Microdose THC Seltzer</span>
+          <ul>
+            <li className="text-white">
+              01. Lorem ipsum dolor, sit amet 
+            </li>
+            <li className="text-white">
+              02. Lorem ipsum dolor, sit amet 
+            </li>
+            <li className="text-white">
+              03. Lorem ipsum dolor, sit amet 
+            </li>
+            <li className="text-white">
+              04. Lorem ipsum dolor, sit amet 
+            </li>
+          </ul>
+          {/* {accordionItems.map((item, index) => (
+            <div key={item.id} className="">
               <button
-                className="w-full text-left py-4 px-6 bg-gray-100 hover:bg-gray-200 focus:outline-none"
+                className={`${styles.accordionTab} w-full text-left py-4 px-6 text-white focus:outline-none rounded`}
                 onClick={() => toggleAccordion(index)}
               >
                 {item.title}
@@ -45,10 +72,10 @@ export default function Accordion() {
                   activeIndex === index ? "max-h-screen" : "max-h-0"
                 }`}
               >
-                <p className="p-6">{item.content}</p>
+                <p className="p-6 text-white">{item.content}</p>
               </div>
             </div>
-          ))}
+          ))} */}
         </div>
       </div>
     </section>

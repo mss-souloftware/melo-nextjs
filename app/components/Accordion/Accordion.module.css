@@ -6,3 +6,42 @@
     rgba(255, 91, 90, 1) 74%
   );
 }
+
+.accordionTab {
+  background: rgb(0, 35, 109);
+  background: linear-gradient(
+    90deg,
+    rgba(0, 35, 109, 1) 16%,
+    rgba(235, 37, 119, 1) 74%
+  );
+}
+
+.accordionSocials {
+  width: 46.806vw;
+  /* height: 49.167vw; */
+  margin: auto;
+  padding-right: 10%;
+}
+
+.accordionSocials img {
+  max-width: 500px;
+  height: 700px;
+  object-fit: contain;
+}
+
+.accordionSocials h2 {
+  font-size: max(37px, 4.514vw);
+}
+.accordionSocials p {
+  font-size: max(18px, 1.228vw);
+}
+
+.accordionData span {
+  font-size: max(12px, 0.903vw);
+}
+.accordionData li {
+  font-size: max(18px, 1.528vw);
+  border-bottom: 1px solid #fff;
+  display: inline-block;
+  padding: 5px 0;
+}
