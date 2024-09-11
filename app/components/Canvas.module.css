@@ -1,0 +1,6 @@
+.buyBtn {
+  position: absolute;
+  right: 70px;
+  border: 2px solid #000;
+  border-radius: 30px;
+}

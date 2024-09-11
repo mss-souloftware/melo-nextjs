@@ -1,0 +1,27 @@
+.marqueeStyle {
+  background: #ffb201;
+  padding: 100px 0;
+}
+
+.marqueeStyle span {
+  position: relative;
+  line-height: 100%;
+  font-size: max(37px, 4.514vw);
+  letter-spacing: -0.03em;
+  color: transparent;
+  -webkit-text-stroke: 1px #fff;
+  text-transform: uppercase;
+  font-weight: 900;
+  padding: 0 30px;
+}
+
+.marqueeStyle span::before {
+  position: absolute;
+  content: "";
+  width: 15px;
+  height: 15px;
+  background: #fff;
+  border-radius: 30px;
+  top: calc(50% - 10px);
+  left: 0;
+}

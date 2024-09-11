@@ -1,10 +1,12 @@
-import Image from "next/image";
+"use client"
 import Hero from "./components/Hero/Hero";
 import Header from "./components/Header/Header";
 import Canvas from "./components/Canvas";
 import SecondSec from "./components/SecondSec/SecondSec";
 import Accordion from "./components/Accordion/Accordion";
 import Heading from "./components/Heading/Heading";
+import SecondPro from "./components/SecondPro/SecondPro";
+import Marquee from "./components/Marquee/Marquee";
 
 export default function Home() {
   return (
@@ -17,6 +19,8 @@ export default function Home() {
       </div>
       <Heading />
       <Accordion />
+      <SecondPro />
+      <Marquee />
     </>
   );
 }
