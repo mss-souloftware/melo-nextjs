@@ -1,0 +1,27 @@
+.footer {
+  background: rgb(255, 157, 30);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 157, 30, 1) 16%,
+    rgba(255, 91, 90, 1) 74%
+  );
+  padding: 10% 40px 2%;
+  position: relative;
+  z-index: 9999;
+}
+
+.footer h2 {
+  margin: 0;
+  text-transform: uppercase;
+  line-height: 80%;
+  letter-spacing: -0.0608em;
+  font-size: max(54px, 10.806vw);
+  font-weight: 700;
+  color: #fff;
+  display: flex;
+  align-items: end;
+}
+
+.footer h2 svg{
+    margin-left: 30px;
+}

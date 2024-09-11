@@ -25,7 +25,7 @@ export default function SecondPro() {
           </p>
         </div>
         <div
-          className={`${styles.accordionData} w-1/2 space-y-4 pl-40 pr-5 relative z-30`}
+          className={`${styles.accordionData} w-1/2 space-y-4 pl-40 pr-5 relative`}
         >
           <span className="text-white uppercase">Microdose THC Seltzer</span>
           <ul>

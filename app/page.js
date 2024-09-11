@@ -7,6 +7,7 @@ import Accordion from "./components/Accordion/Accordion";
 import Heading from "./components/Heading/Heading";
 import SecondPro from "./components/SecondPro/SecondPro";
 import Marquee from "./components/Marquee/Marquee";
+import Footer from "./components/Footer/Footer";
 
 export default function Home() {
   return (
@@ -21,6 +22,7 @@ export default function Home() {
       <Accordion />
       <SecondPro />
       <Marquee />
+      <Footer />
     </>
   );
 }
