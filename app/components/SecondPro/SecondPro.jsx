@@ -16,10 +16,10 @@ export default function SecondPro() {
           <h2 className="uppercase font-bold text-white">GRAPEFRUIT</h2>
           <p className="text-white">
             Hold onto your taste buds because MELO Grapefruit Seltzer is about
-            to blow your mind! This isn't just any seltzer – a zesty, tangy
-            explosion of grapefruit goodness that'll excite your mouth. Each THC
-            infused Drink can is packed with ripe grapefruit's bold, refreshing
-            flavor, ready to electrify your senses. And guess what? We're
+            to blow your mind! This isn&apos;t just any seltzer – a zesty, tangy
+            explosion of grapefruit goodness that&apos;ll excite your mouth. Each THC
+            infused Drink can is packed with ripe grapefruit&apos;s bold, refreshing
+            flavor, ready to electrify your senses. And guess what? We&apos;re
             elevating your experience with 5mg of THC per can with zero
             hangover.
           </p>
