@@ -67,7 +67,6 @@ export default function Home() {
     <div data-scroll-container ref={scrollRef}>
       <div className="mainGradient">
         <Header />
-        {/* Pass the locomotiveScroll instance to the Canvas component */}
         <Canvas locomotive={locomotiveScroll} />
         <Hero />
         <SecondSec />
