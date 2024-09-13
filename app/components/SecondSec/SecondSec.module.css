@@ -1,3 +1,14 @@
+.secondSec {
+  background: rgb(255, 91, 90);
+  background: linear-gradient(
+    0deg,
+    rgba(255, 91, 90, 1) 16%,
+    rgba(255, 158, 27, 1) 84%
+  );
+
+  padding: 80px 0;
+}
+
 .leftSideData > div {
   width: 46.806vw;
   height: 49.167vw;
@@ -22,7 +33,7 @@
 }
 
 .rightData h2 {
-  font-size: max(28px, 2.20vw);
+  font-size: max(28px, 2.2vw);
 }
 .rightData p {
   font-size: max(18px, 1.228vw);

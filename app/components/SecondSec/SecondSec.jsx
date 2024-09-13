@@ -3,7 +3,7 @@ import styles from "./SecondSec.module.css";
 
 export default function SecondSec() {
   return (
-    <section className="mt-40 pb-60">
+    <section className={`${styles.secondSec} mt-40 pb-60`}>
       <div className="flex justify-between">
         <div className="leftData w-1/2">
           <div className={styles.leftSideData}>

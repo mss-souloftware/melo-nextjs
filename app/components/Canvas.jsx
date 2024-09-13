@@ -63,7 +63,7 @@ export default function Canvas() {
         trigger: canvasWrapperRef.current, // Trigger scroll on the wrapper
         start: "top top",
         end: "bottom top",
-        scrub: true,
+        scrub: 2,
         markers: false,
       },
     });
