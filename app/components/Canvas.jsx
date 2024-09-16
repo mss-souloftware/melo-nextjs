@@ -14,7 +14,7 @@ export default function Canvas({ locomotive }) {
   const frameIndex = useRef(0);
 
   useEffect(() => {
-    if (!locomotive) return; // Ensure locomotive scroll is passed before proceeding
+    if (typeof window === "undefined" || !locomotive) return; // Ensure window and locomotive are available
 
     const loadImages = () => {
       const totalImages = 170;
@@ -45,25 +45,27 @@ export default function Canvas({ locomotive }) {
     };
 
     const handleScroll = () => {
-      const scrollTop = locomotive.scroll.instance.scroll.y; // Use Locomotive's scroll position
-      const maxScroll = document.body.scrollHeight - window.innerHeight;
-      const scrollFraction = scrollTop / maxScroll;
-      frameIndex.current = Math.min(
-        images.current.length - 1,
-        Math.floor(scrollFraction * images.current.length)
-      );
-      drawImage(frameIndex.current);
+      if (typeof document !== "undefined") {
+        const scrollTop = locomotive.scroll.instance.scroll.y;
+        const maxScroll = document.body.scrollHeight - window.innerHeight;
+        const scrollFraction = scrollTop / maxScroll;
+        frameIndex.current = Math.min(
+          images.current.length - 1,
+          Math.floor(scrollFraction * images.current.length)
+        );
+        drawImage(frameIndex.current);
+      }
     };
 
     loadImages();
 
-    locomotive.on("scroll", handleScroll); // Listen to Locomotive's scroll event
+    locomotive.on("scroll", handleScroll);
 
-    // Updated GSAP timeline for smooth transition
+    // GSAP ScrollTrigger sync with Locomotive
     const timeline = gsap.timeline({
       scrollTrigger: {
         trigger: canvasWrapperRef.current,
-        scroller: locomotive?.el, // Use Locomotive's container as the scroller
+        scroller: locomotive?.el,
         start: "top top",
         end: "bottom top",
         scrub: 2,
@@ -75,7 +77,7 @@ export default function Canvas({ locomotive }) {
       canvasWrapperRef.current,
       { right: "-120px", position: "fixed", transform: "translateX(0)" },
       {
-        right: "calc(50% - 310px)", // Ensure it stays within the center of the screen
+        right: "calc(50% - 310px)",
         position: "fixed",
         duration: 2,
         ease: "sine.inOut",
@@ -84,12 +86,11 @@ export default function Canvas({ locomotive }) {
 
     drawImage(0);
 
-    // Refresh ScrollTrigger when locomotive scroll updates
     locomotive.on("scroll", ScrollTrigger.update);
-    ScrollTrigger.refresh(); // Refresh scroll positions
+    ScrollTrigger.refresh();
 
     return () => {
-      locomotive.off("scroll", handleScroll); // Clean up Locomotive's scroll event
+      locomotive.off("scroll", handleScroll);
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
   }, [locomotive]);

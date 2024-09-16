@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import LocomotiveScroll from "locomotive-scroll";
+import dynamic from "next/dynamic";
 import "locomotive-scroll/src/locomotive-scroll.scss"; // Import the styles
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -14,6 +14,12 @@ import Heading from "./components/Heading/Heading";
 import SecondPro from "./components/SecondPro/SecondPro";
 import Marquee from "./components/Marquee/Marquee";
 import Footer from "./components/Footer/Footer";
+const LocomotiveScroll = dynamic(
+  () => import("locomotive-scroll").then((mod) => mod.default),
+  {
+    ssr: false,
+  }
+);
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -23,42 +29,55 @@ export default function Home() {
 
   useEffect(() => {
     if (typeof window !== "undefined") {
+      let scroll;
+
       // Initialize Locomotive Scroll
-      const scroll = new LocomotiveScroll({
-        el: scrollRef.current,
-        smooth: true,
-        smoothMobile: true,
-        lerp: 0.06,
-        multiplier: 1,
-      });
+      const initScroll = async () => {
+        const LocomotiveScrollModule = await import("locomotive-scroll");
+        scroll = new LocomotiveScrollModule.default({
+          el: scrollRef.current,
+          smooth: true,
+          smoothMobile: true,
+          lerp: 0.06,
+          multiplier: 1,
+        });
 
-      setLocomotiveScroll(scroll); // Set Locomotive instance in state
+        setLocomotiveScroll(scroll); // Set Locomotive instance in state
 
-      // Sync Locomotive Scroll with GSAP ScrollTrigger
-      ScrollTrigger.scrollerProxy(scrollRef.current, {
-        scrollTop(value) {
-          return arguments.length
-            ? scroll.scrollTo(value, 0, 0)
-            : scroll.scroll.instance.scroll.y;
-        },
-        getBoundingClientRect() {
-          return {
-            top: 0,
-            left: 0,
-            width: window.innerWidth,
-            height: window.innerHeight,
-          };
-        },
-        pinType: scrollRef.current.style.transform ? "transform" : "fixed",
-      });
+        // Sync Locomotive Scroll with GSAP ScrollTrigger
+        ScrollTrigger.scrollerProxy(scrollRef.current, {
+          scrollTop(value) {
+            return arguments.length
+              ? scroll.scrollTo(value, 0, 0)
+              : scroll.scroll.instance.scroll.y;
+          },
+          getBoundingClientRect() {
+            return {
+              top: 0,
+              left: 0,
+              width: window.innerWidth,
+              height: window.innerHeight,
+            };
+          },
+          pinType: scrollRef.current.style.transform ? "transform" : "fixed",
+        });
 
-      // Refresh ScrollTrigger and Locomotive Scroll when page updates
-      ScrollTrigger.addEventListener("refresh", () => scroll.update());
-      ScrollTrigger.refresh();
+        // Refresh ScrollTrigger and Locomotive Scroll when page updates
+        ScrollTrigger.addEventListener("refresh", () => {
+          if (scroll && scroll.update) scroll.update();
+        });
+        ScrollTrigger.refresh();
+      };
+
+      initScroll();
 
       return () => {
-        if (scroll) scroll.destroy();
-        ScrollTrigger.removeEventListener("refresh", () => scroll.update());
+        if (scroll && scroll.destroy) {
+          scroll.destroy();
+        }
+        ScrollTrigger.removeEventListener("refresh", () => {
+          if (scroll && scroll.update) scroll.update();
+        });
       };
     }
   }, []);
