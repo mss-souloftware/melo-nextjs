@@ -83,7 +83,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div data-scroll-container ref={scrollRef}>
+    <div id="mainWrapperContainer" data-scroll-container ref={scrollRef}>
       <div className="mainGradient">
         <Header />
         <Canvas locomotive={locomotiveScroll} />

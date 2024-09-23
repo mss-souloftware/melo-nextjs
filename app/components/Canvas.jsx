@@ -97,8 +97,9 @@ export default function Canvas({ locomotive }) {
 
   return (
     <div
-      className="canvasWrapper"
+      className="canvasWrappe"
       ref={canvasWrapperRef}
+       data-scroll data-scroll-sticky data-scroll-target="#mainWrapperContainer"
       style={{
         position: "fixed",
         top: "50px",
