@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import styles from "./Canvas.module.css";
@@ -12,21 +12,28 @@ export default function Canvas({ locomotive }) {
   const canvasWrapperRef = useRef(null);
   const images = useRef([]);
   const frameIndex = useRef(0);
+  const [allImagesLoaded, setAllImagesLoaded] = useState(false);
 
   useEffect(() => {
     if (typeof window === "undefined" || !locomotive) return; // Ensure window and locomotive are available
 
     const loadImages = () => {
       const totalImages = 170;
+      let loadedImages = 0;
+
       for (let i = 1; i <= totalImages; i++) {
         const img = new Image();
         img.src = `/images/canvas/${i}.webp`;
+
+        img.onload = () => {
+          loadedImages++;
+          if (loadedImages === totalImages) {
+            setAllImagesLoaded(true); // All images are loaded
+          }
+        };
+
         images.current.push(img);
       }
-
-      images.current[0].onload = () => {
-        drawImage(0);
-      };
     };
 
     const drawImage = (index) => {
@@ -59,41 +66,42 @@ export default function Canvas({ locomotive }) {
 
     loadImages();
 
-    locomotive.on("scroll", handleScroll);
+    if (allImagesLoaded) {
+      locomotive.on("scroll", handleScroll);
 
-    // GSAP ScrollTrigger sync with Locomotive
-    const timeline = gsap.timeline({
-      scrollTrigger: {
-        trigger: canvasWrapperRef.current,
-        scroller: locomotive?.el,
-        start: "top top",
-        end: "bottom top",
-        scrub: 2,
-        markers: false,
-      },
-    });
+      // GSAP ScrollTrigger sync with Locomotive
+      const timeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: canvasWrapperRef.current,
+          scroller: locomotive?.el,
+          start: "top top",
+          end: "bottom top",
+          scrub: 2,
+          markers: false,
+        },
+      });
 
-    timeline.fromTo(
-      canvasWrapperRef.current,
-      { right: "-120px", position: "fixed", transform: "translateX(0)" },
-      {
-        right: "calc(50% - 310px)",
-        position: "fixed",
-        duration: 2,
-        ease: "sine.inOut",
-      }
-    );
+      timeline.fromTo(
+        canvasWrapperRef.current,
+        { right: "-120px", position: "fixed", transform: "translateX(0)" },
+        {
+          right: "calc(50% - 310px)",
+          position: "fixed",
+          duration: 2,
+          ease: "sine.inOut",
+        }
+      );
 
-    drawImage(0);
-
-    locomotive.on("scroll", ScrollTrigger.update);
-    ScrollTrigger.refresh();
+      drawImage(0);
+      locomotive.on("scroll", ScrollTrigger.update);
+      ScrollTrigger.refresh();
+    }
 
     return () => {
       locomotive.off("scroll", handleScroll);
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
-  }, [locomotive]);
+  }, [locomotive, allImagesLoaded]);
 
   return (
     <div
