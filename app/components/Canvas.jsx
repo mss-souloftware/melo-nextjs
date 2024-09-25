@@ -15,27 +15,29 @@ export default function Canvas({ locomotive }) {
   const [allImagesLoaded, setAllImagesLoaded] = useState(false);
 
   useEffect(() => {
-    if (typeof window === "undefined" || !locomotive) return; // Ensure window and locomotive are available
-
+    if (typeof window === "undefined" || !locomotive) return;
+  
     const loadImages = () => {
       const totalImages = 170;
       let loadedImages = 0;
-
+  
       for (let i = 1; i <= totalImages; i++) {
         const img = new Image();
         img.src = `/images/canvas/${i}.webp`;
-
+  
         img.onload = () => {
           loadedImages++;
           if (loadedImages === totalImages) {
-            setAllImagesLoaded(true); // All images are loaded
+            setAllImagesLoaded(true);
+            ScrollTrigger.refresh(); // Refresh ScrollTrigger after images load
+            if (locomotive && locomotive.update) locomotive.update(); // Update LocomotiveScroll
           }
         };
-
+  
         images.current.push(img);
       }
     };
-
+  
     const drawImage = (index) => {
       const img = images.current[index];
       const ctx = canvasRef.current.getContext("2d");
@@ -50,7 +52,7 @@ export default function Canvas({ locomotive }) {
         ctx.drawImage(img, x, y, img.width * scale, img.height * scale);
       }
     };
-
+  
     const handleScroll = () => {
       if (typeof document !== "undefined") {
         const scrollTop = locomotive.scroll.instance.scroll.y;
@@ -63,13 +65,12 @@ export default function Canvas({ locomotive }) {
         drawImage(frameIndex.current);
       }
     };
-
+  
     loadImages();
-
-    if (allImagesLoaded) {
+  
+    // if (allImagesLoaded) {
       locomotive.on("scroll", handleScroll);
-
-      // GSAP ScrollTrigger sync with Locomotive
+  
       const timeline = gsap.timeline({
         scrollTrigger: {
           trigger: canvasWrapperRef.current,
@@ -80,7 +81,7 @@ export default function Canvas({ locomotive }) {
           markers: false,
         },
       });
-
+  
       timeline.fromTo(
         canvasWrapperRef.current,
         { right: "-120px", position: "fixed", transform: "translateX(0)" },
@@ -91,17 +92,21 @@ export default function Canvas({ locomotive }) {
           ease: "sine.inOut",
         }
       );
-
+  
       drawImage(0);
-      locomotive.on("scroll", ScrollTrigger.update);
-      ScrollTrigger.refresh();
-    }
-
-    return () => {
-      locomotive.off("scroll", handleScroll);
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-    };
-  }, [locomotive, allImagesLoaded]);
+      // locomotive.on("scroll", ScrollTrigger.update);
+      // ScrollTrigger.refresh(); // Make sure ScrollTrigger is updated
+  
+      // Make sure LocomotiveScroll is updated
+      // if (locomotive && locomotive.update) locomotive.update();
+    // }
+  
+    // return () => {
+    //   locomotive.off("scroll", handleScroll);
+    //   ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    // };
+  },);
+  
 
   return (
     <div

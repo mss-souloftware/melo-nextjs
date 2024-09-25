@@ -1,10 +1,10 @@
 .secondSec {
-  background: rgb(255, 91, 90);
+  /* background: rgb(255, 91, 90);
   background: linear-gradient(
     0deg,
     rgba(255, 91, 90, 1) 16%,
     rgba(255, 158, 27, 1) 84%
-  );
+  ); */
 
   padding: 80px 0;
 }

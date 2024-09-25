@@ -88,9 +88,9 @@ export default function Home() {
         <Header />
         <Canvas locomotive={locomotiveScroll} />
         <Hero />
-        <SecondSec />
+        <SecondSec locomotive={locomotiveScroll} />
       </div>
-      <Heading />
+      <Heading locomotive={locomotiveScroll} />
       <Accordion />
       <SecondPro />
       <Marquee />
