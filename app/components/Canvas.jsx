@@ -18,7 +18,7 @@ export default function Canvas({ locomotive }) {
     if (typeof window === "undefined" || !locomotive) return;
   
     const loadImages = () => {
-      const totalImages = 237;
+      const totalImages = 170;
       let loadedImages = 0;
   
       for (let i = 1; i <= totalImages; i++) {
