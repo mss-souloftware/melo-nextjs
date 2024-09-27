@@ -1,0 +1,18 @@
+.loadingWrapper {
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: bold;
+  background: rgb(0, 35, 109);
+  background: linear-gradient(
+    90deg,
+    rgba(0, 35, 109, 1) 16%,
+    rgba(235, 37, 119, 1) 74%
+  );
+}

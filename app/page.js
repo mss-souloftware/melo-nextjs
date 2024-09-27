@@ -14,6 +14,10 @@ import Heading from "./components/Heading/Heading";
 import SecondPro from "./components/SecondPro/SecondPro";
 import Marquee from "./components/Marquee/Marquee";
 import Footer from "./components/Footer/Footer";
+
+import loadingStyle from "./Loading.module.css";
+import Image from "next/image";
+
 const LocomotiveScroll = dynamic(
   () => import("locomotive-scroll").then((mod) => mod.default),
   {
@@ -23,78 +27,99 @@ const LocomotiveScroll = dynamic(
 
 gsap.registerPlugin(ScrollTrigger);
 
+const LoadingScreen = () => (
+  <div className={`${loadingStyle.loadingWrapper}`}>
+    <Image src="/images/logo_melo.webp" alt="Melo" width={300} height={108} />
+  </div>
+);
+
 export default function Home() {
   const scrollRef = useRef(null);
-  const [locomotiveScroll, setLocomotiveScroll] = useState(null); // Track Locomotive instance
+  const [locomotiveScroll, setLocomotiveScroll] = useState(null);
+  const [loading, setLoading] = useState(true); // Loading state
+  const [canvasLoaded, setCanvasLoaded] = useState(false); // State for Canvas loading
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      let scroll;
+    const initialize = async () => {
+      if (typeof window !== "undefined") {
+        let scroll;
 
-      // Initialize Locomotive Scroll
-      const initScroll = async () => {
-        const LocomotiveScrollModule = await import("locomotive-scroll");
-        scroll = new LocomotiveScrollModule.default({
-          el: scrollRef.current,
-          smooth: true,
-          smoothMobile: true,
-          lerp: 0.06,
-          multiplier: 1,
+        // LocomotiveScroll initialization promise
+        const initLocomotiveScroll = new Promise(async (resolve) => {
+          const LocomotiveScrollModule = await import("locomotive-scroll");
+          scroll = new LocomotiveScrollModule.default({
+            el: scrollRef.current,
+            smooth: true,
+            smoothMobile: true,
+            lerp: 0.06,
+            multiplier: 1,
+          });
+
+          setLocomotiveScroll(scroll);
+
+          // GSAP ScrollTrigger setup with LocomotiveScroll
+          ScrollTrigger.scrollerProxy(scrollRef.current, {
+            scrollTop(value) {
+              return arguments.length
+                ? scroll.scrollTo(value, 0, 0)
+                : scroll.scroll.instance.scroll.y;
+            },
+            getBoundingClientRect() {
+              return {
+                top: 0,
+                left: 0,
+                width: window.innerWidth,
+                height: window.innerHeight,
+              };
+            },
+            pinType: scrollRef.current.style.transform ? "transform" : "fixed",
+          });
+
+          ScrollTrigger.addEventListener("refresh", () => {
+            if (scroll && scroll.update) scroll.update();
+          });
+          ScrollTrigger.refresh();
+
+          resolve(); // LocomotiveScroll fully initialized
         });
 
-        setLocomotiveScroll(scroll); // Set Locomotive instance in state
+        // Wait for both LocomotiveScroll and Canvas to load
+        await Promise.all([initLocomotiveScroll, canvasLoaded]);
 
-        // Sync Locomotive Scroll with GSAP ScrollTrigger
-        ScrollTrigger.scrollerProxy(scrollRef.current, {
-          scrollTop(value) {
-            return arguments.length
-              ? scroll.scrollTo(value, 0, 0)
-              : scroll.scroll.instance.scroll.y;
-          },
-          getBoundingClientRect() {
-            return {
-              top: 0,
-              left: 0,
-              width: window.innerWidth,
-              height: window.innerHeight,
-            };
-          },
-          pinType: scrollRef.current.style.transform ? "transform" : "fixed",
-        });
+        setLoading(false); // All components are loaded
+      }
+    };
 
-        // Refresh ScrollTrigger and Locomotive Scroll when page updates
-        ScrollTrigger.addEventListener("refresh", () => {
-          if (scroll && scroll.update) scroll.update();
-        });
-        ScrollTrigger.refresh();
-      };
+    initialize();
 
-      initScroll();
-
-      return () => {
-        if (scroll && scroll.destroy) {
-          scroll.destroy();
-        }
-        ScrollTrigger.removeEventListener("refresh", () => {
-          if (scroll && scroll.update) scroll.update();
-        });
-      };
-    }
-  }, []);
+    return () => {
+      if (locomotiveScroll && locomotiveScroll.destroy) {
+        locomotiveScroll.destroy();
+      }
+    };
+  }, [canvasLoaded]); // Re-run when Canvas loads
 
   return (
     <div id="mainWrapperContainer" data-scroll-container ref={scrollRef}>
-      <div className="mainGradient">
-        <Header />
-        <Canvas locomotive={locomotiveScroll} />
-        <Hero />
-        <SecondSec locomotive={locomotiveScroll} />
-      </div>
-      <Heading locomotive={locomotiveScroll} />
-      <Accordion />
-      <SecondPro />
-      <Marquee />
-      <Footer />
+      {loading ? (
+        <LoadingScreen />
+      ) : (
+        <div className="mainGradient">
+          <Header />
+          <Canvas
+            onLoad={() => setCanvasLoaded(true)}
+            locomotive={locomotiveScroll}
+          />{" "}
+          {/* Callback when Canvas finishes loading */}
+          <Hero />
+          <SecondSec locomotive={locomotiveScroll} />
+          <Heading locomotive={locomotiveScroll} />
+          <Accordion />
+          <SecondPro />
+          <Marquee />
+          <Footer />
+        </div>
+      )}
     </div>
   );
 }
