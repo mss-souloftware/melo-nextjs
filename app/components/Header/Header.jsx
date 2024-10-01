@@ -14,19 +14,19 @@ export default function Header() {
           <div className={`${styles.navlinks} w-1/3 flex`}>
             <ul>
               <li>
-                <Link href="#">
+                <Link href="https://meloseltzer.com/collections/all">
                   Shop
                 </Link>
               </li>
               <li>
-                <Link href="#">
+                <Link href="https://meloseltzer.com/pages/about-us">
                   About
                 </Link>
               </li>
             </ul>
           </div>
           <div className={`${styles.cartBtn} w-1/3 flex justify-end items-center`}>
-            <Link href="#">Cart</Link>
+            <Link href="https://meloseltzer.com/">Cart</Link>
           </div>
         </div>
       </div>

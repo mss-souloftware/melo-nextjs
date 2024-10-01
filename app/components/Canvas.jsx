@@ -86,7 +86,7 @@ export default function Canvas({ locomotive }) {
         canvasWrapperRef.current,
         { right: "-120px", position: "fixed", transform: "translateX(0)" },
         {
-          right: "calc(50% - 310px)",
+          right: "calc(50% - 255px)",
           position: "fixed",
           duration: 2,
           ease: "sine.inOut",
@@ -107,7 +107,6 @@ export default function Canvas({ locomotive }) {
     // };
   },);
   
-
   return (
     <div
       className="canvasWrappe"
@@ -118,13 +117,13 @@ export default function Canvas({ locomotive }) {
       style={{
         position: "fixed",
         top: "50px",
-        right: "-120px",
+        right: "-150px",
         zIndex: 1,
         transform: "translateX(0)",
       }}
     >
       <Link
-        href="#"
+        href="https://meloseltzer.com/products/grapefruit"
         className={`${styles.buyBtn} flex items-center bg-[#FFC700] px-2 py-1`}
       >
         <svg
@@ -144,7 +143,7 @@ export default function Canvas({ locomotive }) {
         </svg>
         Buy Now
       </Link>
-      <canvas ref={canvasRef} width="620px" height="620px"></canvas>
+      <canvas className={styles.mainCanvas} ref={canvasRef} width="550px" height="550px"></canvas>
     </div>
   );
 }

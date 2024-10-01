@@ -24,7 +24,7 @@ export default function Hero() {
   return (
     <section className="my-16">
       <div className={`${styles.heroSec} px-4 mx-auto`}>
-        <h1 ref={headingRef} className="text-black text-4xl">
+        <h1 ref={headingRef} className="text-black text-4xl opacity-0">
           Hangout without the Hangover
         </h1>
         <p>DAYTIME CRAZY, NIGHTTIME HAZY - ALL VIBES, NO LIES!</p>
