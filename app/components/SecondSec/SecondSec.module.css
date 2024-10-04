@@ -38,3 +38,13 @@
 .rightData p {
   font-size: max(18px, 1.228vw);
 }
+
+@media (max-width: 768px) {
+  .leftSideData > div {
+    width: calc(100% - 40px);
+    height: 29.167vw;
+    padding: 10%;
+    text-align: center;
+    margin: 0 20px;
+  }
+}

@@ -1,32 +1,41 @@
 .heroSec {
-    position: relative;
+  position: relative;
 }
 
 .heroSec h1 {
-    color: #fff;
-    margin: 0;
-    text-transform: uppercase;
-    line-height: 80%;
-    font-weight: 700;
-    font-size: max(54px, 10.500vw);
+  color: #fff;
+  margin: 0;
+  text-transform: uppercase;
+  line-height: 80%;
+  font-weight: 700;
+  font-size: max(54px, 10.5vw);
 }
 
 .heroSec p {
-    position: absolute;
-    color: #fff;
-    right: 40%;
-    bottom: .258vw;
-    -webkit-transform: translateX(115%);
-    transform: translateX(115%);
-    width: 18vw;
-    text-transform: none;
-    line-height: 110%;
-    letter-spacing: -.02em;
-    font-size: 1.528vw;
-    font-size: max(15px, 1.528vw);
+  position: absolute;
+  color: #fff;
+  right: 40%;
+  bottom: 0.258vw;
+  -webkit-transform: translateX(115%);
+  transform: translateX(115%);
+  width: 18vw;
+  text-transform: none;
+  line-height: 110%;
+  letter-spacing: -0.02em;
+  font-size: 1.528vw;
+  font-size: max(15px, 1.528vw);
 }
 
-.svgArrow{
-    margin: 7.431vw auto 0;
-    max-width: 50px;
+.svgArrow {
+  margin: 7.431vw auto 0;
+  max-width: 50px;
+}
+
+@media (max-width: 768px) {
+  .heroSec p {
+    position: static;
+    transform: translate(0);
+    width: 100%;
+    margin-top: 30px;
+  }
 }

@@ -12,7 +12,7 @@
     overflow: hidden;
 }
 
-.navlinks ul li a {
+.navlinks li a {
     position: relative;
     color: #fff;
     text-transform: uppercase;
@@ -20,7 +20,7 @@
     font-size: 1.389vw;
 }
 
-.navlinks ul li a::after {
+.navlinks li a::after {
     position: absolute;
     content: "";
     width: 100%;
@@ -31,7 +31,7 @@
     transition: all .2s linear;
 }
 
-.navlinks ul li a:hover::after {
+.navlinks li a:hover::after {
     bottom: -10px;
 }
 

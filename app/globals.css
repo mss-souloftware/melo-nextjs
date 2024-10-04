@@ -8,9 +8,9 @@ body {
   height: 100%;
 }
 
-[data-scroll-container] {
+/* [data-scroll-container] {
   overflow: hidden;
-}
+} */
 
 .mainGradient {
   background: rgb(0, 35, 109);

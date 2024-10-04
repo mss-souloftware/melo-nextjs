@@ -26,8 +26,8 @@ export default function Footer() {
         </Link>
       </h2>
 
-      <div className="footerBottom mt-20 flex items-center">
-        <div className="w-1/3">
+      <div className="footerBottom mt-20 flex md:flex-row flex-col items-center">
+        <div className="md:w-1/3 w-full">
           <Image
             src="/images/logo_melo.webp"
             width={200}
@@ -36,7 +36,7 @@ export default function Footer() {
           />
           <p className="text-white mt-10">©2024</p>
         </div>
-        <div className="w-1/3 flex justify-between">
+        <div className="md:w-1/3 w-full flex justify-between">
           <ul>
             <li>
               <Link className="text-white uppercase" href="/">
@@ -92,7 +92,7 @@ export default function Footer() {
           </ul>
         </div>
 
-        <div className="w-1/3 text-center">
+        <div className="md:w-1/3 w-full text-center">
           <p className="text-white text-center text-sm">
             Text us - your 24/7 immunity consultants
           </p>

@@ -52,15 +52,15 @@ export default function SecondSec({ locomotive }) {
 
   return (
     <section className={`${styles.secondSec} mt-40 pb-60`} ref={secondSecRef}>
-      <div className="flex justify-between">
-        <div className="leftData w-1/2">
+      <div className="flex md:flex-row flex-col justify-between">
+        <div className="leftData md:w-1/2 w-full">
           <div className={styles.leftSideData}>
             <div>
               <span>Stay sick 🤙 🤧 not sick</span>
             </div>
           </div>
         </div>
-        <div className={`${styles.rightData} w-1/2 pl-40 pr-5`}>
+        <div className={`${styles.rightData} md:w-1/2 w-full md:pl-40 md:mt-0 mt-8 pl-5 pr-5`}>
           <span className="text-white uppercase">
             TRY something totally new
           </span>

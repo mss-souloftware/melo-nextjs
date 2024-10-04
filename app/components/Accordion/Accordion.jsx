@@ -29,9 +29,9 @@ export default function Accordion() {
   };
 
   return (
-    <section className={`${styles.accordionMain} py-40`}>
-      <div className="flex justify-between">
-        <div className={`${styles.accordionSocials} w-1/2`}>
+    <section className={`${styles.accordionMain} md:py-40 py-10`}>
+      <div className="flex md:flex-row flex-col justify-between">
+        <div className={`${styles.accordionSocials} md:w-1/2 w-full`}>
           <h2 className="uppercase font-bold text-white">Wild Berries</h2>
           <p className="text-white">
             Get ready to take your taste buds on a rollercoaster of flavor with
@@ -43,9 +43,9 @@ export default function Accordion() {
             the next level.
           </p>
         </div>
-        <div className={`${styles.accordionData} w-1/2 space-y-4 pl-40 pr-5 relative`}>
+        <div className={`${styles.accordionData} md:w-1/2 w-full space-y-4 md:pl-40 pl-0 md:pr-5 pr-0 relative`}>
           <span className="text-white uppercase">Microdose THC Seltzer</span>
-          <ul>
+          <ul className="flex flex-col">
             <li className="text-white">
               01. Lorem ipsum dolor, sit amet 
             </li>

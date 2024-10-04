@@ -106,10 +106,10 @@ export default function Home() {
       ) : (
         <div className="mainGradient">
           <Header />
-          <Canvas
+          {/* <Canvas
             onLoad={() => setCanvasLoaded(true)}
             locomotive={locomotiveScroll}
-          />{" "}
+          /> */}
           {/* Callback when Canvas finishes loading */}
           <Hero />
           <SecondSec locomotive={locomotiveScroll} />
