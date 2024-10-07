@@ -17,6 +17,7 @@ import Footer from "./components/Footer/Footer";
 
 import loadingStyle from "./Loading.module.css";
 import Image from "next/image";
+import CanBanner from "./components/CanBanner/CanBanner";
 
 const LocomotiveScroll = dynamic(
   () => import("locomotive-scroll").then((mod) => mod.default),
@@ -38,6 +39,24 @@ export default function Home() {
   const [locomotiveScroll, setLocomotiveScroll] = useState(null);
   const [loading, setLoading] = useState(true); // Loading state
   const [canvasLoaded, setCanvasLoaded] = useState(false); // State for Canvas loading
+  const [isScreenLarge, setIsScreenLarge] = useState(false); // Screen size state
+
+  useEffect(() => {
+    // Check screen width on component mount
+    const handleResize = () => {
+      setIsScreenLarge(window.innerWidth > 800);
+    };
+
+    handleResize(); // Set the initial screen size
+
+    // Add event listener for window resize
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      // Clean up event listener on component unmount
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   useEffect(() => {
     const initialize = async () => {
@@ -50,9 +69,15 @@ export default function Home() {
           scroll = new LocomotiveScrollModule.default({
             el: scrollRef.current,
             smooth: true,
-            smoothMobile: true,
+            // smoothMobile: true,
             lerp: 0.06,
             multiplier: 1,
+            smartphone: {
+              smooth: true,
+            },
+            tablet: {
+              smooth: true,
+            },
           });
 
           setLocomotiveScroll(scroll);
@@ -106,12 +131,16 @@ export default function Home() {
       ) : (
         <div className="mainGradient">
           <Header />
-          {/* <Canvas
-            onLoad={() => setCanvasLoaded(true)}
-            locomotive={locomotiveScroll}
-          /> */}
-          {/* Callback when Canvas finishes loading */}
           <Hero />
+          {isScreenLarge ? (
+            <Canvas
+              onLoad={() => setCanvasLoaded(true)}
+              locomotive={locomotiveScroll}
+            />
+          ) : (
+            <CanBanner />
+          )}
+          {/* Callback when Canvas finishes loading */}
           <SecondSec locomotive={locomotiveScroll} />
           <Heading locomotive={locomotiveScroll} />
           <Accordion />

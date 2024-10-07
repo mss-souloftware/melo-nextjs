@@ -34,7 +34,7 @@ export default function Footer() {
             height={100}
             alt="Melo"
           />
-          <p className="text-white mt-10">©2024</p>
+          <p className="text-white mt-10 md:mb-0 mb-5">©2024</p>
         </div>
         <div className="md:w-1/3 w-full flex justify-between">
           <ul>
@@ -93,7 +93,7 @@ export default function Footer() {
         </div>
 
         <div className="md:w-1/3 w-full text-center">
-          <p className="text-white text-center text-sm">
+          <p className="text-white text-center text-sm md:mt-0 mt-5">
             Text us - your 24/7 immunity consultants
           </p>
           <Link
